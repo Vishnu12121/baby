@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="scene">
+        <div class="background-stars"></div>
+        <div class="floating-balloons">
+            <div class="balloon balloon1"></div>
+            <div class="balloon balloon2"></div>
+            <div class="balloon balloon3"></div>
+        </div>
+    </div>
+
+    <header>
+        <h1>Happy Birthday!</h1>
+        <p>Wishing you a day filled with joy, love, and unforgettable moments.</p>
+    </header>
+
+    <section id="hero">
+        <div class="cake-container">
+            <div class="cake">
+                <div class="layer layer1"></div>
+                <div class="layer layer2"></div>
+                <div class="layer layer3"></div>
+                <div class="candle"></div>
+            </div>
+        </div>
+        <div class="message">
+            <h2>May your birthday be as sweet as cake!</h2>
+        </div>
+    </section>
+
+    <section id="long-distance-passage">
+        <h2>Our Journey Across the Miles</h2>
+        <p>
+            Though miles apart, our hearts beat as one. Every moment without you only strengthens my love and longing. 
+            This birthday, I send you all my love wrapped in warm wishes and dreams of the day we reunite. 
+            Distance may test us, but it will never break the bond we share. Happy birthday, my love.
+        </p>
+    </section>
+
+    <section id="gift">
+        <h2>Open Your Gift</h2>
+        <div class="gift-box" onclick="openGift()">
+            <div class="box">
+                <div class="lid"></div>
+                <div class="base"></div>
+            </div>
+            <div class="gift-content" id="gift-content">
+                <p>Surprise! Wishing you the best year ever!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="wishes">
+        <h2>Birthday Wishes</h2>
+        <div class="wish-cards">
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">Click to Reveal Wish</div>
+                    <div class="card-back">Wishing you endless happiness and success!</div>
+                </div>
+            </div>
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">Click to Reveal Wish</div>
+                    <div class="card-back">May all your dreams come true this year!</div>
+                </div>
+            </div>
+            <div class="card" onclick="flipCard(this)">
+                <div class="card-inner">
+                    <div class="card-front">Click to Reveal Wish</div>
+                    <div class="card-back">Here's to another year of adventures!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section id="gallery">
+        <h2>Memorable Moments</h2>
+        <div class="carousel-3d">
+            <div class="slide-3d active">
+                <img src="images/photo1.jpg" alt="Birthday Photo 1">
+            </div>
+            <div class="slide-3d">
+                <img src="images/photo2.jpg" alt="Birthday Photo 2">
+            </div>
+            <div class="slide-3d">
+                <img src="images/photo3.jpg" alt="Birthday Photo 3">
+            </div>
+            <div class="slide-3d">
+                <img src="images/photo4.jpg" alt="Birthday Photo 4">
+            </div>
+            <div class="slide-3d">
+                <img src="images/photo5.jpg" alt="Birthday Photo 5">
+            </div>
+        </div>
+        <button onclick="nextSlide3D()">Next</button>
+    </section>
+
+    <section id="countdown">
+        <h2>Countdown to Your Next Birthday</h2>
+        <div id="timer">
+            <div class="time">
+                <span id="days">00</span>
+                <p>Days</p>
+            </div>
+            <div class="time">
+                <span id="hours">00</span>
+                <p>Hours</p>
+            </div>
+            <div class="time">
+                <span id="minutes">00</span>
+                <p>Minutes</p>
+            </div>
+            <div class="time">
+                <span id="seconds">00</span>
+                <p>Seconds</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="music">
+        <h2>Background Music</h2>
+        <audio controls autoplay loop>
+            <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+            Your browser does not support the audio element.
+        </audio>
+    </section>
+
+    <section id="blow-candle">
+        <h2>Special Surprise</h2>
+        <p>Hold there and don't leave the button until the end. Then blow into your microphone!</p>
+        <button id="cake-button">Hold Here</button>
+        <p id="mic-status">Microphone access needed for blowing feature.</p>
+    </section>
+
+    <footer>
+        <p>Made with love for your special day!</p>
+    </footer>
+
+    <canvas id="confetti"></canvas>
+    <canvas id="fireworks"></canvas>
+
+    <script src="script.js"></script>
+</body>
+</html>
