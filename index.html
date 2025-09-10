@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Happy Birthday!</title>
+    <title>Happy Birthday baby!</title>
     <style>
         /* General Styles */
         body {
@@ -407,6 +407,23 @@
                 gap: 15px;
             }
         }
+        #long-distance-passage {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 90%;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(255, 64, 129, 0.3);
+            font-style: italic;
+            font-size: 1.2em;
+            color: #333;
+            text-align: center;
+            line-height: 1.6;
+            z-index: 10;
+        }
 
         /* Fix for mobile background and styles */
         body, html {
@@ -446,6 +463,15 @@
         </div>
     </section>
 
+    <section id="long-distance-passage">
+        <h2>Our Journey Across the Miles</h2>
+        <p>
+            Though miles apart, our hearts beat as one. Every moment without you only strengthens my love and longing.
+            This birthday, I send you all my love wrapped in warm wishes and dreams of the day we reunite.
+            Distance may test us, but it will never break the bond we share. Happy birthday, my love.
+        </p>
+    </section>
+=======
     <section id="long-distance-passage">
         <h2>Our Journey Across the Miles</h2>
         <p>
@@ -496,7 +522,7 @@
         <h2>Memorable Moments</h2>
         <div class="carousel-3d">
             <div class="slide-3d active">
-                <img src="images/photo1.jpg" alt="Birthday Photo 1" />
+                <img src=""D:\Snapchat-913707905.jpg"" alt="Birthday Photo 1" />
             </div>
             <div class="slide-3d">
                 <img src="images/photo2.jpg" alt="Birthday Photo 2" />
@@ -538,7 +564,7 @@
 
     <section id="music">
         <h2>Background Music</h2>
-        <audio controls autoplay loop>
+        <audio id="background-audio" controls autoplay loop>
             <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav" />
             Your browser does not support the audio element.
         </audio>
@@ -716,6 +742,17 @@
             confettiCanvas.height = window.innerHeight;
             fireworksCanvas.width = window.innerWidth;
             fireworksCanvas.height = window.innerHeight;
+        });
+    </script>
+    <script>
+        // Attempt to play audio on page load for browsers that block autoplay
+        window.addEventListener('load', () => {
+            const audio = document.getElementById('background-audio');
+            if (audio) {
+                audio.play().catch(() => {
+                    // Autoplay might be blocked, user interaction needed
+                });
+            }
         });
     </script>
 </body>
