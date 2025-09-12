@@ -14,6 +14,11 @@
             color: #333;
             overflow-x: hidden;
             perspective: 1000px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
         }
 
         #scene {
@@ -246,67 +251,186 @@
 
         /* Gallery Section */
         #gallery {
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.05));
+            border-radius: 25px;
+            margin: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        #gallery h2 {
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .carousel-3d {
-            perspective: 1000px;
+            perspective: 1200px;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 300px;
+            height: 500px;
+            position: relative;
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            transform-style: preserve-3d;
+            animation: rotateCarousel 25s infinite linear;
+        }
+
+        @keyframes rotateCarousel {
+            from { transform: rotateY(0deg); }
+            to { transform: rotateY(360deg); }
         }
 
         .slide-3d {
             position: absolute;
             width: 400px;
-            height: 300px;
-            transition: transform 1s;
+            height: 320px;
+            left: -25px;
+            top: 40px;
             transform-style: preserve-3d;
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
 
-        .slide-3d.active {
-            transform: translateZ(0);
-        }
-
-        .slide-3d:nth-child(2) {
-            transform: translateZ(-200px) rotateY(60deg);
-        }
-
-        .slide-3d:nth-child(3) {
-            transform: translateZ(-400px) rotateY(120deg);
-        }
+        .slide-3d:nth-child(1) { transform: rotateY(0deg) translateZ(280px); }
+        .slide-3d:nth-child(2) { transform: rotateY(72deg) translateZ(280px); }
+        .slide-3d:nth-child(3) { transform: rotateY(144deg) translateZ(280px); }
+        .slide-3d:nth-child(4) { transform: rotateY(216deg) translateZ(280px); }
+        .slide-3d:nth-child(5) { transform: rotateY(288deg) translateZ(280px); }
 
         .slide-3d img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
+            object-fit: contain;
+            object-position: center top;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05));
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .slide-3d:hover img {
+            transform: scale(1.08) rotateY(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 10px 20px rgba(0,0,0,0.2);
+            border-color: rgba(255, 215, 0, 0.5);
+        }
+
+        .carousel-3d:hover .carousel-container {
+            animation-play-state: paused;
+        }
+
+        .slide-3d:hover {
+            transform: scale(1.15) translateZ(320px) !important;
+            z-index: 20;
+        }
+
+        /* Memory captions */
+        .memory-caption {
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .slide-3d:hover .memory-caption {
+            opacity: 1;
         }
 
         /* Countdown Section */
         #countdown {
-            padding: 50px 20px;
+            padding: 60px 20px;
             text-align: center;
-            background: rgba(255, 255, 255, 0.8);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+            border-radius: 25px;
+            margin: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            animation: countdownGlow 2s infinite alternate;
+        }
+
+        @keyframes countdownGlow {
+            0% { box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 0 20px rgba(255, 215, 0, 0.2); }
+            100% { box-shadow: 0 10px 30px rgba(0,0,0,0.1), 0 0 30px rgba(255, 215, 0, 0.4); }
+        }
+
+        #countdown h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
         }
 
         #timer {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
+            flex-wrap: wrap;
         }
 
         .time {
             display: flex;
             flex-direction: column;
             align-items: center;
+            background: linear-gradient(135deg, #ff6b6b, #4ecdc4);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            min-width: 100px;
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+
+        .time:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.2);
         }
 
         .time span {
-            font-size: 2em;
+            font-size: 3em;
             font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 5px;
+        }
+
+        .time p {
+            font-size: 1.1em;
+            color: white;
+            margin: 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* Music Section */
@@ -408,21 +532,32 @@
             }
         }
         #long-distance-passage {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 90%;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px 20px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(255, 64, 129, 0.3);
+            padding: 60px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 25px;
+            margin: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        #long-distance-passage h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        #long-distance-passage p {
             font-style: italic;
             font-size: 1.2em;
             color: #333;
-            text-align: center;
             line-height: 1.6;
-            z-index: 10;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         /* Fix for mobile background and styles */
@@ -445,7 +580,7 @@
     </div>
 
     <header>
-        <h1 class="animated-text">Happy Birthday!</h1>
+        <h1 class="animated-text">Happy Birthday Bangaram!</h1>
         <p>Wishing you a day filled with joy, love, and unforgettable moments.</p>
     </header>
 
@@ -468,16 +603,17 @@
         <p>
             Though miles apart, our hearts beat as one. Every moment without you only strengthens my love and longing.
             This birthday, I send you all my love wrapped in warm wishes and dreams of the day we reunite.
-            Distance may test us, but it will never break the bond we share. Happy birthday, my love.
+            Distance may test us, but it will never break the bond we share.
         </p>
-    </section>
-=======
-    <section id="long-distance-passage">
-        <h2>Our Journey Across the Miles</h2>
+        <p style="font-size: 1.1em; margin-top: 20px; font-weight: bold; color: #ff4081;">
+            💝 This isn't just 847 lines of code... it's 847 lines of pure love, countless hours of thought,
+            and endless creativity poured into making your special day unforgettable. Every pixel, every animation,
+            every word was crafted with you in mind - because you deserve nothing less than perfection. 💝
+        </p>
         <p>
-            Though miles apart, our hearts beat as one. Every moment without you only strengthens my love and longing.
-            This birthday, I send you all my love wrapped in warm wishes and dreams of the day we reunite.
-            Distance may test us, but it will never break the bond we share. Happy birthday, my love.
+            Happy birthday,
+            May this year bring you closer to all your dreams, and may our journey together continue to flourish
+            no matter the distance. I love you more than words can express. ❤️
         </p>
     </section>
 
@@ -518,54 +654,39 @@
         </div>
     </section>
 
-    <section id="gallery">
+<section id="gallery">
         <h2>Memorable Moments</h2>
         <div class="carousel-3d">
-            <div class="slide-3d active">
-                <img src=""D:\Snapchat-913707905.jpg"" alt="Birthday Photo 1" />
-            </div>
-            <div class="slide-3d">
-                <img src="images/photo2.jpg" alt="Birthday Photo 2" />
-            </div>
-            <div class="slide-3d">
-                <img src="images/photo3.jpg" alt="Birthday Photo 3" />
-            </div>
-            <div class="slide-3d">
-                <img src="images/photo4.jpg" alt="Birthday Photo 4" />
-            </div>
-            <div class="slide-3d">
-                <img src="images/photo5.jpg" alt="Birthday Photo 5" />
+            <div class="carousel-container">
+                <div class="slide-3d">
+                    <img src="https://raw.githubusercontent.com/Vishnu12121/baby/main/IMG_20250617_124254_060.jpg" alt="Birthday Photo 1" />
+                    <div class="memory-caption">MY BABY 💕</div>
+                </div>
+                <div class="slide-3d">
+                    <img src="https://raw.githubusercontent.com/Vishnu12121/baby/main/IMG_20250617_124255_613.jpg" alt="Birthday Photo 2" />
+                    <div class="memory-caption">YOUR SWEET SMILE 🍭</div>
+                </div>
+                <div class="slide-3d">
+                    <img src="https://raw.githubusercontent.com/Vishnu12121/baby/main/IMG_20250617_124256_551.jpg" alt="Birthday Photo 3" />
+                    <div class="memory-caption">Your Beautiful EYES 😊</div>
+                </div>
+                <div class="slide-3d">
+                    <img src="https://raw.githubusercontent.com/Vishnu12121/baby/main/IMG_20250910_192123.jpg" alt="Birthday Photo 4" />
+                    <div class="memory-caption">Forever My Love 💖</div>
+                </div>
+                <div class="slide-3d">
+                    <img src="https://raw.githubusercontent.com/Vishnu12121/baby/main/Snapchat-913707905.jpg" alt="Birthday Photo 5" />
+                    <div class="memory-caption">Happy Birthday Baby! 🎂</div>
+                </div>
             </div>
         </div>
-        <button onclick="nextSlide3D()">Next</button>
     </section>
 
-    <section id="countdown">
-        <h2>Countdown to Your Next Birthday</h2>
-        <div id="timer">
-            <div class="time">
-                <span id="days">00</span>
-                <p>Days</p>
-            </div>
-            <div class="time">
-                <span id="hours">00</span>
-                <p>Hours</p>
-            </div>
-            <div class="time">
-                <span id="minutes">00</span>
-                <p>Minutes</p>
-            </div>
-            <div class="time">
-                <span id="seconds">00</span>
-                <p>Seconds</p>
-            </div>
-        </div>
-    </section>
 
     <section id="music">
-        <h2>Background Music</h2>
-        <audio id="background-audio" controls autoplay loop>
-            <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav" />
+        <h2></h2>
+        <audio id="background-audio" autoplay loop>
+            <source src="https://raw.githubusercontent.com/Vishnu12121/baby/main/arctic-monkeys-i-wanna-be-yours.mp3" type="audio/mpeg" />
             Your browser does not support the audio element.
         </audio>
     </section>
@@ -614,29 +735,7 @@
         }
 
         // Countdown Timer
-        const birthday = new Date('December 25, 2024 00:00:00').getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = birthday - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            document.getElementById('days').innerText = days;
-            document.getElementById('hours').innerText = hours;
-            document.getElementById('minutes').innerText = minutes;
-            document.getElementById('seconds').innerText = seconds;
-
-            if (distance < 0) {
-                clearInterval(countdownInterval);
-                document.getElementById('timer').innerHTML = '<p>Happy Birthday!</p>';
-            }
-        }
-
-        const countdownInterval = setInterval(updateCountdown, 1000);
+       
 
         // Confetti Canvas
         const confettiCanvas = document.getElementById('confetti');
@@ -751,9 +850,19 @@
             if (audio) {
                 audio.play().catch(() => {
                     // Autoplay might be blocked, user interaction needed
-                });
+                }); 
             }
         });
     </script>
+    <!-- Background music iframe embed -->
+    <iframe 
+        width="0" 
+        height="0" 
+        src="https://www.youtube.com/embed/SezFNtFCeQY?autoplay=1&loop=1&playlist=SezFNtFCeQY&controls=0&mute=1&modestbranding=1&iv_load_policy=3" 
+        frameborder="0" 
+        allow="autoplay" 
+        allowfullscreen 
+        style="display:none;">
+    </iframe>
 </body>
 </html>
